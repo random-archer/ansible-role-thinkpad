@@ -1,2 +1,25 @@
 ---
-# tasks file for thinkpad
+
+- name: Check that current system is a Lenovo ThinkPad.
+  fail:
+    msg: >-
+      Target system appears not to be a ThinkPad (found hardware type
+      {{ ansible_product_version }}).
+  when: "'ThinkPad' not in ansible_product_version"
+
+- name: Install Synaptics input driver
+  pacman: name=xf86-input-synaptics state=present
+  tags:
+    - synaptics
+
+- name: Install acpi_call for TLP battery functions
+  pacman: name=acpi_call state=present
+  tags:
+    - battery
+
+- name: Install tpacpi-bat
+  aur: name=tpacpi-bat user={{ user.name }}
+  tags:
+    - aur
+    - battery
+    

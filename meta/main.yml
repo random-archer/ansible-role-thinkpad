@@ -1,7 +1,7 @@
 dependencies: []
 
 galaxy_info:
-  author: Andrei Pozolotin
+  author: Arch User
   description: Configures Lenovo ThinkPad for running Linux
   license: Apache
   min_ansible_version: 1.9
